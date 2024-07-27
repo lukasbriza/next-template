@@ -6,6 +6,7 @@ export const rootMetadata = {
 
 } satisfies Metadata
 
+//DISABLE CACHING FOR THIS ROUTE SEGMENT
 export const dynamic = 'force-dynamic';
 
 export const HomePage: WebPage = async ({ params: { locale } }) => {

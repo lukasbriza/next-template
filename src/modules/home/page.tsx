@@ -1,17 +1,14 @@
-import { useTranslation } from "@/i18n/i18n"
-import { WebPage } from "@/shared/types"
-import { Metadata } from "next"
+import type { Metadata } from 'next'
 
-export const rootMetadata = {
+import { useTranslation } from '@/i18n/i18n'
+import type { WebPage } from '@/shared/types'
 
-} satisfies Metadata
+export const rootMetadata = {} satisfies Metadata
 
-//DISABLE CACHING FOR THIS ROUTE SEGMENT
-export const dynamic = 'force-dynamic';
+// DISABLE CACHING FOR THIS ROUTE SEGMENT
+export const dynamic = 'force-dynamic'
 
 export const HomePage: WebPage = async ({ params: { locale } }) => {
-  const { t } = await useTranslation(locale, "home")
-  return (
-    <main>{t("message")}</main>
-  )
+  const { t } = await useTranslation(locale, 'home')
+  return <main>{t('message')}</main>
 }

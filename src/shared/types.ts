@@ -1,6 +1,7 @@
-import { Locale } from "@/i18n/config";
-import { NextPage } from "next";
-import { PropsWithChildren, ReactNode } from "react";
+import type { NextPage } from 'next'
+import type { PropsWithChildren, ReactNode } from 'react'
+
+import type { Locale } from '@/i18n/config'
 
 /**
  * Locale const translated to type
@@ -24,7 +25,7 @@ export type WebPageProps<T extends WebPageParams = WebPageParams> = {
 /**
  * Async layout type.
  */
-export type AsyncWebLayout = (props: PropsWithChildren<WebPageProps>) => ReactNode;
+export type AsyncWebLayout = (props: PropsWithChildren<WebPageProps>) => ReactNode
 
 /**
  * Page type

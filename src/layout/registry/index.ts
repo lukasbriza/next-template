@@ -1,1 +1,1 @@
-export * from "./EmotionRegistry"
+export * from "./emotion-registry"

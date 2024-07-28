@@ -1,45 +1,45 @@
 'use client'
 
-// import { ThemeProvider } from '@lukasbriza/theme';
-import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
-import { useServerInsertedHTML } from 'next/navigation';
-import { FC, PropsWithChildren, useState } from "react";
+// import { ThemeProvider } from '@lukasbriza/theme' - uncomment when using monorepo-template ()
+import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
+import { useServerInsertedHTML } from 'next/navigation'
+import { FC, PropsWithChildren, useState } from 'react'
 
 export const EmotionRegistry: FC<PropsWithChildren> = ({ children }) => {
   const [{ cache, flush }] = useState(() => {
-    const cache = createCache({ key: 'css' });
+    const cache = createCache({ key: 'css' })
     cache.compat = true;
 
-    const insert = cache.insert.bind(cache);
+    const insert = cache.insert.bind(cache)
     let inserted: string[] = [];
 
     cache.insert = (...args) => {
-      const serialized = args[1];
+      const serialized = args[1]
       if (cache.inserted[serialized.name] === undefined) {
-        inserted.push(serialized.name);
+        inserted.push(serialized.name)
       }
-      return insert(...args);
+      return insert(...args)
     };
 
     const flush = () => {
-      const previousInserted = inserted;
-      inserted = [];
-      return previousInserted;
+      const previousInserted = inserted
+      inserted = []
+      return previousInserted
     };
 
     return { cache, flush }
   })
 
   useServerInsertedHTML(() => {
-    const names = flush();
+    const names = flush()
     if (names.length === 0) {
-      return;
+      return
     }
 
     let styles = '';
     for (const name of names) {
-      styles += cache.inserted[name];
+      styles += cache.inserted[name]
     }
 
     return (

@@ -1,11 +1,13 @@
-import { i18nRouter } from "next-i18n-router";
-import { NextRequest } from "next/server";
-import { i18nConfig } from "./i18n/config";
+import createMiddleware from 'next-intl/middleware'
 
-//Add i18n router middleware
-export const middleware = (request: NextRequest) => {
-  return i18nRouter(request, i18nConfig)
-}
+import { i18nConfig } from './i18n/config'
+
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: i18nConfig.locales,
+  // Used when no locale matches
+  defaultLocale: i18nConfig.defaultLocale,
+})
 
 //Add RegExp for which routes avoid internationalisation
 export const config = {
